@@ -60,17 +60,21 @@ Put the webhook in `.dev.vars` (gitignored) for local Worker runs — see
 ## GHL wiring (Las Vegas sub-account)
 
 1. Create the Las Vegas sub-account workflow with an **Inbound Webhook** trigger.
-2. **Prime the webhook before saving it** — GHL inbound webhooks must receive a test POST containing *every field you'll ever want to map*. Run this curl with the real webhook URL:
+2. **Prime the webhook before saving it** — GHL inbound webhooks must receive a test POST containing *every field you'll ever want to map*; anything absent from the priming payload is silently dropped forever after. The field list below is the contract the Worker actually sends (`DEFAULT_VARIANT` in `notary-lead-form/src/worker.js`, plus the four envelope fields the handler adds) — **if that list changes, re-prime the webhook**. Run this curl with the real webhook URL (the first path segment is the Las Vegas location ID, `OePy3YrpMagdeDDyroQe` — good check that you copied the right sub-account's hook):
 
    ```bash
-   curl -X POST 'https://services.leadconnectorhq.com/hooks/XXXX/webhook-trigger/YYYY' \
+   curl -X POST 'https://services.leadconnectorhq.com/hooks/OePy3YrpMagdeDDyroQe/webhook-trigger/YYYY' \
      -H 'Content-Type: application/json' \
      -d '{
+       "source_site": "lasvegasmobilenotaryservices.com",
+       "brand": "Las Vegas Mobile Notary Services",
+       "submitted_at": "2026-07-08T12:00:00.000Z",
+       "ip_country": "US",
        "first_name": "Test",
        "last_name": "Lead",
        "phone": "+17025550100",
        "email": "test@example.com",
-       "service_type": "Mobile notary — general documents",
+       "service_type": "In-Person",
        "zip": "89101",
        "documents": "Priming payload — includes every field the site sends",
        "utm_source": "google",
@@ -81,14 +85,14 @@ Put the webhook in `.dev.vars` (gitignored) for local Worker runs — see
        "gclid": "TEST_GCLID",
        "landing_page": "/service-areas/henderson/?utm_source=google",
        "referrer": "https://www.google.com/",
-       "source_site": "lasvegasmobilenotaryservices.com",
-       "brand": "Las Vegas Mobile Notary Services",
-       "submitted_at": "2026-07-08T12:00:00.000Z",
-       "ip_country": "US"
+       "page_city": "Henderson",
+       "page_state": "NV",
+       "page_county": "Clark",
+       "page_type": "area"
      }'
    ```
-3. Map fields in the workflow (contact create/update, tag `las-vegas-web-lead`, tag by `service_type`), then mirror the NotaryPro→CloseClear branch logic: RON vs. in-person routing, POST to CloseClear `receive_lead.asp`, store the 200 response on the contact.
-4. Set `GHL_WEBHOOK_URL` in Cloudflare Pages env vars and redeploy. Submit the live form once end-to-end and confirm the contact lands with all attribution fields.
+3. Map fields in the workflow: contact create/update, tag `las-vegas-web-lead`, and tag by `service_type`. `service_type` is deliberately binary — exactly `Online` or `In-Person`, set via the `services` option in `eleventy.config.js` — so the workflow can branch straight to NotaryLive for online (RON) or to an in-house Las Vegas notary for in-person. Document specifics arrive in the `documents` free-text field, not the dropdown. Routing ends inside this sub-account's CRM; there is no downstream handoff to any external system.
+4. Set `GHL_WEBHOOK_URL` as a **Secret** (not a plaintext variable — plaintext is readable in the dashboard and echoed by `wrangler deploy`) on the Worker: either `wrangler secret put GHL_WEBHOOK_URL`, or **Workers → `las-vegas` → Settings → Variables and Secrets → Add → Secret**. Saving in the dashboard deploys a new version on its own, and a later `npm run deploy` won't clear it. Submit the live form once end-to-end and confirm the contact lands with all attribution fields.
 
 ## Conversion tracking
 

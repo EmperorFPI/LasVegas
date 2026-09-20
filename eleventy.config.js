@@ -6,6 +6,11 @@ export default function (eleventyConfig) {
   // Everything site-specific lives here, so this config is the only thing a
   // new city site needs to change.
   eleventyConfig.addPlugin(leadForm, {
+    // Only two routes exist: NotaryLive handles online (RON), in-house Las
+    // Vegas notaries handle everything in person. The workflow branches on
+    // this value, so keep it binary — document specifics arrive via `documents`.
+    services: ["Online", "In-Person"],
+    serviceLabel: "Online or in person?",
     zipPlaceholder: "89101",
     phone: site.phone,
     phoneHref: site.phoneHref,
