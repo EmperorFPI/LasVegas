@@ -98,7 +98,7 @@ Put the webhook in `.dev.vars` (gitignored) for local Worker runs — see
 
 ## Before launch checklist
 
-- [ ] **Replace the placeholder phone number** — `(702) 555-0134` / `+17025550134` in `src/_data/site.json` (single source; header, footer, CTAs, and schema all pull from it)
+- [x] **Replace the placeholder phone number** — now `(888) 619-1998` / `+18886191998` in `src/_data/site.json` (single source; header, footer, CTAs, and schema all pull from it)
 - [ ] Replace placeholder email in `site.json`
 - [ ] Register **Las Vegas Mobile Notary Services** DBA in Nevada (Stripe statement descriptor compliance, same as Austin)
 - [ ] Connect the Las Vegas Stripe account to the Las Vegas GHL sub-account (isolated ledger for the brand experiment)
