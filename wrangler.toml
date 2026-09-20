@@ -1,4 +1,4 @@
-name = "lasvegas"
+name = 'lasvegas'
 main = "worker/index.js"
 compatibility_date = "2024-11-01"
 

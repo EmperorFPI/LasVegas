@@ -92,7 +92,7 @@ Put the webhook in `.dev.vars` (gitignored) for local Worker runs — see
      }'
    ```
 3. Map fields in the workflow: contact create/update, tag `las-vegas-web-lead`, and tag by `service_type`. `service_type` is deliberately binary — exactly `Online` or `In-Person`, set via the `services` option in `eleventy.config.js` — so the workflow can branch straight to NotaryLive for online (RON) or to an in-house Las Vegas notary for in-person. Document specifics arrive in the `documents` free-text field, not the dropdown. Routing ends inside this sub-account's CRM; there is no downstream handoff to any external system.
-4. Set `GHL_WEBHOOK_URL` as a **Secret** (not a plaintext variable — plaintext is readable in the dashboard and echoed by `wrangler deploy`) on the Worker: either `wrangler secret put GHL_WEBHOOK_URL`, or **Workers → `las-vegas` → Settings → Variables and Secrets → Add → Secret**. Saving in the dashboard deploys a new version on its own, and a later `npm run deploy` won't clear it. Submit the live form once end-to-end and confirm the contact lands with all attribution fields.
+4. Set `GHL_WEBHOOK_URL` as a **Secret** (not a plaintext variable — plaintext is readable in the dashboard and echoed by `wrangler deploy`) on the Worker: either `wrangler secret put GHL_WEBHOOK_URL`, or **Workers → `lasvegas` → Settings → Variables and Secrets → Add → Secret**. Saving in the dashboard deploys a new version on its own, and a later `npm run deploy` won't clear it. Submit the live form once end-to-end and confirm the contact lands with all attribution fields.
 
 ## Conversion tracking
 
