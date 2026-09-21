@@ -106,7 +106,8 @@ Put the webhook in `.dev.vars` (gitignored) for local Worker runs — see
 - [ ] Replace placeholder email in `site.json`
 - [ ] Register **Las Vegas Mobile Notary Services** DBA in Nevada (Stripe statement descriptor compliance, same as Austin)
 - [ ] Connect the Las Vegas Stripe account to the Las Vegas GHL sub-account (isolated ledger for the brand experiment)
-- [ ] Prime + wire the GHL inbound webhook (above), set `GHL_WEBHOOK_URL`
+- [x] Prime + wire the GHL inbound webhook (above), set `GHL_WEBHOOK_URL` — primed 2026-09-21 with all 24 fields and both `service_type` values; secret set on the `lasvegas` Worker; live form submission confirmed end-to-end
+- [ ] Redirect `www` → apex (Rules → Redirect Rules, 301). `www` currently returns **522** — the apex is the canonical host everywhere in the markup, robots.txt, and sitemap
 - [ ] Run homepage, one service page, and one area page through the Rich Results Test before assuming the schema pattern holds
 - [ ] Verify `/sitemap.xml` renders and submit in Search Console; verify domain property
 - [ ] Create the Las Vegas Google Business Profile
