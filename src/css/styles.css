@@ -94,7 +94,7 @@ strong { font-weight: 700; }
 }
 .header-inner { display: flex; align-items: center; gap: 1.5rem; padding-top: 0.7rem; padding-bottom: 0.7rem; }
 .brand { display: flex; align-items: center; gap: 0.55rem; color: var(--ink); text-decoration: none; font-family: var(--font-display); font-size: 1.15rem; }
-.brand-seal { width: 34px; height: 34px; color: var(--gold); flex-shrink: 0; }
+.brand-mark { height: 44px; width: auto; display: block; flex-shrink: 0; }
 .brand-text strong { font-weight: 700; }
 .site-nav { display: flex; gap: 1.1rem; margin-left: auto; }
 .site-nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
@@ -103,6 +103,10 @@ strong { font-weight: 700; }
 @media (max-width: 860px) {
   .site-nav { display: none; }
   .header-cta { margin-left: auto; padding: 0.55rem 0.9rem; font-size: 0.9rem; }
+}
+@media (max-width: 520px) {
+  .brand { font-size: 1rem; }
+  .brand-mark { height: 34px; }
 }
 
 /* Hero (home) */
