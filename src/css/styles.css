@@ -92,10 +92,9 @@ strong { font-weight: 700; }
   border-bottom: 1px solid var(--line);
   position: sticky; top: 0; z-index: 50;
 }
-.header-inner { display: flex; align-items: center; gap: 1.5rem; padding-top: 0.7rem; padding-bottom: 0.7rem; }
-.brand { display: flex; align-items: center; gap: 0.55rem; color: var(--ink); text-decoration: none; font-family: var(--font-display); font-size: 1.15rem; }
-.brand-mark { height: 44px; width: auto; display: block; flex-shrink: 0; }
-.brand-text strong { font-weight: 700; }
+.header-inner { display: flex; align-items: center; gap: 1.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.brand { display: flex; align-items: center; text-decoration: none; }
+.brand-logo { height: 62px; width: auto; display: block; flex-shrink: 0; }
 .site-nav { display: flex; gap: 1.1rem; margin-left: auto; }
 .site-nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
 .site-nav a:hover { color: var(--link); }
@@ -105,8 +104,7 @@ strong { font-weight: 700; }
   .header-cta { margin-left: auto; padding: 0.55rem 0.9rem; font-size: 0.9rem; }
 }
 @media (max-width: 520px) {
-  .brand { font-size: 1rem; }
-  .brand-mark { height: 34px; }
+  .brand-logo { height: 46px; }
 }
 
 /* Hero (home) */
