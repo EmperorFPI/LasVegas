@@ -15,6 +15,6 @@
     "wrangler": "^4.111.0"
   },
   "dependencies": {
-    "notary-lead-form": "github:EmperorFPI/notary-lead-form#semver:^1.0.0"
+    "notary-lead-form": "github:EmperorFPI/notary-lead-form#semver:^1.1.0"
   }
 }

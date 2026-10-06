@@ -14,6 +14,9 @@ export default function (eleventyConfig) {
     zipPlaceholder: "89101",
     phone: site.phone,
     phoneHref: site.phoneHref,
+    // Public key; the matching secret is the TURNSTILE_SECRET_KEY Worker secret.
+    // Empty renders no widget, which is why worker/index.js reads the same value.
+    turnstileSiteKey: site.turnstileSiteKey,
     trust:
       "Commissioned &middot; Background-screened &middot; E&amp;O insured. " +
       "Payment is processed before the appointment — no surprises at the table.",
